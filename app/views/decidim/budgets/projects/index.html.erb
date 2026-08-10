@@ -1,0 +1,54 @@
+<% cell("decidim/budgets/limit_announcement", budget) %>
+
+<% unless voting_mode? %>
+  <aside class="row column one-col" aria-label="Announcement">
+    <%= render partial: "decidim/shared/component_announcement" %>
+  </aside>
+<% end %>
+
+<main class="voting-wrapper <%="margin-top-3" if voting_booth_forced? %>">
+  <div class="row columns mb-10">
+    <%= render partial: "budget_summary" %>
+
+    <% unless voting_finished? %>
+      <%= render partial: "cancel_voting_modal" %>
+    <% end %>
+  </div>
+
+  <% if budgets.count > 1 && !voting_mode? %>
+    <div class="row column voting-rules one-col">
+      <div class="row">
+        <div class="columns medium-8 large-9">
+          <%= button_to(decidim_budgets.budgets_path, class: "link m-bottom flex", method: :get) do %>
+            <%= icon "arrow-left-s-line", class: "icon--small h-6 w-6 pt-1", role: "img", "aria-hidden": true %>
+            <%= t(".back_to_budgets") %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <div class="row columns double-col mx-auto">
+    <%= render partial: "count" %>
+
+    <div class="budget__list--header">
+      <div class="collection-sort-controls">
+        <%= render partial: "order" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="double-col_off mx-auto">
+    <div>
+      <%= render layout: "decidim/shared/filters", locals: { filter_sections: , search_variable: :search_text_cont, skip_to_id: "projects" } do %>
+        <%= hidden_field_tag :order, order, id: nil, class: "order_filter" %>
+      <% end %>
+    </div>
+
+    <div id="projects" class="columns mediumlarge-8 large-9 w-full lg:mt-0" aria-live="polite">
+      <%= render partial: "projects" %>
+    </div>
+  </div>
+</main>
+
+<%= render partial: "decidim/budgets/projects/selected_projects_modal" if voting_mode? && !voting_finished? %>
+<%= append_javascript_pack_tag("decidim_budgets_booth_voting") %>

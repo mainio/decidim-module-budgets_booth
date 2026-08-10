@@ -1,0 +1,245 @@
+# frozen_string_literal: true
+
+require "spec_helper"
+
+describe "BudgetsView" do
+  let(:projects_count) { 1 }
+  let(:decidim_budgets) { Decidim::EngineRouter.main_proxy(component) }
+  let(:user) { create(:user, :confirmed, organization:) }
+
+  before do
+    switch_to_host(organization.host)
+  end
+
+  context "with multiple budgets" do
+    include_context "with taxonomied budgets"
+
+    context "when not signed in" do
+      before { visit decidim_budgets.budgets_path }
+
+      it "shows the normal layout" do
+        expect(page).to have_link(translated(budgets.first.title), href: decidim_budgets.budget_path(budgets.first))
+        expect(page).to have_css("a", text: /show/i, count: 3)
+        expect(page).to have_content("€100,000")
+      end
+    end
+
+    context "when workflow" do
+      include_context "with zip_code workflow"
+
+      context "when signed in" do
+        before { sign_in user, scope: :user }
+
+        context "when no zip code" do
+          before { visit decidim_budgets.budgets_path }
+
+          it "redirects user to zipcode entering path" do
+            expect(page).to have_current_path(decidim_budgets.new_zip_code_path)
+          end
+        end
+
+        context "with user zip_code exist" do
+          let!(:user_data) { create(:user_data, component:, user:, metadata: { zip_code: "dummy_1234" }) }
+
+          context "when no budgets to vote" do
+            before { visit decidim_budgets.budgets_path }
+
+            it "renders budgets page" do
+              expect(page).to have_current_path(decidim_budgets.budgets_path)
+              expect(page).to have_content "No budgets were found based on your ZIP code. You can change your ZIP code if it's not correct, or you can search again later."
+            end
+          end
+
+          context "when budgets to vote" do
+            let(:first_budget) { budgets.first }
+            let(:second_budget) { budgets.second }
+            let(:landing_page_content) { Decidim::Faker::Localized.sentence(word_count: 5) }
+
+            before do
+              Decidim::BudgetsBooth::TaxonomyManager.clear_cache!
+              user_data.update!(metadata: { zip_code: "10004" })
+              visit decidim_budgets.budgets_path
+            end
+
+            it "renders the budgets page and budgets" do
+              expect(page).to have_current_path(decidim_budgets.budgets_path)
+              expect(page).to have_content "You are now in the voting booth."
+
+              within "#budgets" do
+                expect(page).to have_css(".card.card--list.budget-list", count: 2)
+                expect(page).to have_css("a", text: "More info", count: 2)
+                expect(page).to have_link(text: /Take part/, href: decidim_budgets.budget_voting_index_path(first_budget))
+                expect(page).to have_link(text: /Take part/, href: decidim_budgets.budget_voting_index_path(second_budget))
+                expect(page).to have_link(decidim_sanitize(translated(first_budget.title)), href: decidim_budgets.budget_voting_index_path(budgets.first))
+                expect(page).to have_link(decidim_sanitize(translated(second_budget.title)), href: decidim_budgets.budget_voting_index_path(second_budget))
+                expect(page).to have_content(decidim_sanitize(translated(first_budget.title)))
+                expect(page).to have_content(decidim_sanitize(translated(second_budget.title)))
+              end
+
+              expect(page).to have_no_css(".callout.warning.font-customizer")
+
+              find(".voting-booth-banner [data-dialog-open='cancel-voting']").click
+
+              expect(page).to have_css("#cancel-voting")
+
+              within "#cancel-voting" do
+                expect(page).to have_content("Are you sure you don't want to cast your vote?")
+                click_on "I don't want to vote right now"
+              end
+
+              expect(page).to have_link(href: "/")
+            end
+
+            context "with landing page content" do
+              let(:landing_page_content) { Decidim::Faker::Localized.sentence(word_count: 5) }
+
+              before do
+                component.update(settings: component_settings.merge(workflow: "zip_code", landing_page_content:))
+                visit current_path
+              end
+
+              it "renders callout message" do
+                expect(page).to have_css(".callout.warning.font-customizer")
+                within ".columns.medium-5.mediumlarge-4" do
+                  within ".callout.warning.font-customizer" do
+                    within ".rich-text-display" do
+                      expect(page).to have_content(translated(landing_page_content))
+                    end
+                  end
+                end
+              end
+            end
+
+            context "with cancel voting booth url" do
+              include_context "with a survey"
+              before do
+                component.update(settings: component_settings.merge(workflow: "zip_code", vote_cancel_url: main_component_path(surveys_component)))
+                visit current_path
+              end
+
+              it "redirects to correct url" do
+                expect(page).to have_button("Cancel voting")
+                click_on "Cancel voting"
+
+                within "#cancel-voting" do
+                  expect(page).to have_content("Are you sure you don't want to cast your vote?")
+                  click_on "I don't want to vote right now"
+                end
+
+                expect(page).to have_current_path(main_component_path(surveys_component))
+              end
+            end
+
+            describe "vote all budgets" do
+              let!(:extra_subtaxonomy) { create(:taxonomy, parent: root_taxonomy, organization:) }
+              let!(:extra_postal) { create(:taxonomy, name: { en: "10004" }, code: "EXTRA_10004", parent: extra_subtaxonomy, organization:) }
+              let!(:extra_taxonomy_filter_item) { create(:taxonomy_filter_item, taxonomy_filter:, taxonomy_item: extra_subtaxonomy) }
+
+              # We add another budget to the list of budgets where use is eligible to vote
+              let!(:extra_budget) do
+                create(:budget, component:, total_budget: 100_000).tap { |budget| budget.taxonomies << extra_subtaxonomy }
+              end
+              let!(:extra_project) { create(:project, budget: extra_budget, budget_amount: 75_000) }
+
+              before do
+                first_budget.taxonomies << extra_subtaxonomy
+                second_budget.taxonomies << extra_subtaxonomy
+                Decidim::BudgetsBooth::TaxonomyManager.clear_cache!
+                component.update(settings: component_settings.merge(workflow: "zip_code", vote_threshold_percent: 0))
+              end
+
+              it "shows all of the budgets after completing voting when maximum_budgets_to_vote_on not set" do
+                [extra_budget, first_budget, second_budget].each do |bdg|
+                  create_order(bdg)
+                end
+                visit current_path
+                expect(page).to have_css("div.card.card--list.budget-list", count: 3)
+              end
+
+              it "shows only voted budgets when maximum_budgets_to_vote_on is set" do
+                component.update(settings: component_settings.merge(workflow: "zip_code", vote_threshold_percent: 0, maximum_budgets_to_vote_on: 2))
+                [extra_budget, first_budget].each do |bdg|
+                  create_order(bdg)
+                end
+                visit current_path
+                expect(page).to have_css("div.card.card--list.budget-list", count: 2)
+              end
+            end
+
+            describe "votes popup" do
+              before do
+                first_budget.projects.first.update!(budget_amount: 75_000)
+                create_order(first_budget)
+                visit current_path
+              end
+
+              it "shows the popups" do
+                within "div.card.card--list.budget-list", match: :first do
+                  expect(page).to have_link("Show my vote")
+                  click_on "Show my vote"
+                end
+                expect(page).to have_css("div", id: "budget-votes-#{first_budget.id}")
+                order = Decidim::Budgets::Order.last
+                project = order.projects.first
+                within "#budget-votes-#{first_budget.id}" do
+                  expect(page).to have_content("Your vote in #{decidim_sanitize(translated(first_budget.title))}")
+                  expect(page).to have_content("These are the proposals you have chosen to be part of the budget.")
+                  expect(page).to have_content(decidim_sanitize(translated(project.title)))
+                  click_on "OK"
+                end
+                expect(page).to have_no_selector("div", id: "budget-votes-#{first_budget.id}")
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+
+  context "with single budget" do
+    include_context "with single scoped budget"
+    let!(:user_data) { create(:user_data, component:, user:, metadata: { zip_code: "10004" }) }
+
+    before do
+      sign_in user
+      component.update(settings: component_settings.merge(workflow: "zip_code"))
+      visit decidim_budgets.budgets_path
+    end
+
+    it "shows the budgets list when visit budgets list" do
+      expect(page).to have_current_path(decidim_budgets.budgets_path)
+      expect(page).to have_content "You are now in the voting booth."
+      within "#budgets" do
+        expect(page).to have_css(".card.card--list.budget-list", count: 1)
+        expect(page).to have_css("a", text: "More info", count: 1)
+        expect(page).to have_link(text: /Take part/, href: decidim_budgets.budget_voting_index_path(budget))
+        expect(page).to have_link(decidim_sanitize(translated(budget.title)), href: decidim_budgets.budget_voting_index_path(budget))
+        expect(page).to have_content(decidim_sanitize(translated(budget.title)))
+      end
+    end
+
+    it "does not show the budgets header in voting booth when go to the booth" do
+      visit decidim_budgets.budget_voting_index_path(budget)
+      expect(page).to have_current_path(decidim_budgets.budget_voting_index_path(budget))
+      expect(page).to have_no_content("Based on your ZIP code - 10004. Not the right one?")
+      expect(page).to have_no_link("Change it here", href: decidim_budgets.new_zip_code_path)
+    end
+  end
+
+  private
+
+  def decidim_budgets
+    Decidim::EngineRouter.main_proxy(component)
+  end
+
+  def budget_path(budget)
+    decidim_budgets.budget_path(budget.id)
+  end
+
+  def create_order(budget)
+    order = create(:order, user:, budget:)
+    order.projects << budget.projects.first
+    order.checked_out_at = Time.current
+    order.save!
+  end
+end

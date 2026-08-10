@@ -1,0 +1,224 @@
+---
+en:
+  decidim:
+    budgets:
+      admin:
+        budgets:
+          edit:
+            images: Images
+        imports:
+          help:
+            paper_orders_count: "The import document should contain the following columns: 'project_id' (with the project's id), 'project_title' (with the project's title) and 'number_of_votes' (with the number of new votes for the project that should be imported)."
+          label:
+            paper_orders_count: Import paper orders count
+          resources:
+            paper_orders_count:
+              one: Project
+              other: Projects
+          title:
+            paper_orders_count: Import votes from paper ballots
+      budget_list_item:
+        current_phase: 'Current phase: %{phase}'
+        more_info: More info
+        show_my_vote: Show my vote
+        take_part: Take part
+      budgets:
+        actions:
+          cancel_voting: Are you sure you want to exit the voting booth?
+          cancel_zip_code: Are you sure you want to exit?
+        index:
+          cancel_voting: Cancel voting
+          login_before_access: You need to login first.
+          not_allowed: You are not allowed to perform this action.
+          voted: You have already voted for this budget.
+      budgets_header:
+        based_on_zip_code: Based on your ZIP code - %{zip_code}.
+        change_it_here: Change it here
+        not_right_one: Not the right one? %{link}
+        title: 'Ballots available to you'
+      budgets_list:
+        no_budgets_found: No budgets were found based on your ZIP code. You can change
+          your ZIP code if it's not correct, or you can search again later.
+        vote: Show
+        voting_possible: "You can still vote in these budgets:"
+        voted: "You have already voted in these budgets:"
+      orders:
+        status:
+          continue_voting: Continue voting
+          title: "You have voted %{budget} successfully"
+          return: Return to budgets
+          votes_info: Your vote for %{budget_name} has been registered. You can continue voting in other budgets or log out.
+        modal:
+          assigned: 'Assigned: '
+          close: Close window
+          description: These are the proposals you have chosen to be part of the budget.
+          ok: OK
+          title: Your vote in %{budget_title}
+          total_budget: 'Total budget: '
+        status_summary_modal:
+          title: Picked proposals
+          votes: Your votes
+          close: Sulje
+      project_l:
+        explore: Open
+      project_vote_button:
+        add_to_vote: Add to your vote
+        remove_from_vote: Remove from vote
+      projects:
+        budget_confirm:
+          description: These are the proposals you have chosen to be part of the budget.
+          is_this_correct: Is this correct?
+        budget_summary:
+          are_you_sure: Are you sure you want to delete your vote?
+          back_to_budgets: Show all budgets
+          cancel_voting: Cancel voting
+          choose_budget: You decide the %{budget_title} budget
+          choose_description: Choose the proposals you like and cast your vote at the
+            end.
+          total_budget: 'You can allocate %{budget} to different proposals. First choose the proposals to vote from the list below. After selection, press the "I am ready" -button.'
+          total_projects: "Total proposals: "
+        cancel_voting_modal:
+          continue: Continue voting
+          description: If you cancel your vote, it will not be count for the final
+            result. In order to get your vote heard, please go back to cast your vote.
+          exit: I don't want to vote right now
+          label: Exit voting
+          title: Are you sure you don't want to cast your vote?
+        count:
+          projects_count: "%{count} votable proposals"
+        index:
+          back_to_budgets: Back to budgets
+        order_progress:
+          assigned: "Assigned: "
+          choices: "Choices left: "
+          ready: I am ready
+          show_choices: Show selection
+          total_budget: 'Total budget: '
+          total_projects: "Total proposals: "
+          view: View
+          vote: Vote
+        order_selected_projects:
+          assigned: "Budget left: "
+          choices: "Choices left: "
+          view: View
+          remove: Remove
+          show_choices: Show selection
+        order_progress_summary_content:
+          total_budget: Total budget
+        pre_voting_budget_summary:
+          are_you_sure: Are you sure you want to delete your vote?
+          browse: Browse proposals
+          cancel_order: Cancel your vote
+          pre_vote:
+            casted_description: You have previously voted in this budget. If you want
+              to see what you voted, click "Review your vote" button. You can also
+              %{cancel_link} and start again.
+            casted_title: Thank you for your voting
+            finish_description: You have already started voting in this budget. Would
+              you like to finish your vote?
+            finish_voting: Finish voting
+            result_voted: Review your vote
+            start_description: You can browse to the proposals to get yourself familiar
+              with them. In order to start voting, click the "Start voting" button.
+            start_voting: Start voting
+            title: Welcome to the vote!
+          ready: I am ready
+          total_budget: "Total budget: %{amount}"
+          voting_finished: The voting has finished!
+        project:
+          you_voted: You voted for this
+        project_budget_button:
+          add: Choose
+          added: Remove
+        project_modal:
+          budget_amount: 'Budget: '
+          cancel: Cancel
+          category: 'Category: '
+          close_project: Close
+        show:
+          pre_vote:
+            continue_voting: Continue voting
+            introduction: Want to vote this proposal?
+            start_voting: Start voting on this area
+          view_all_projects: View all votable proposals
+        selected_projects_modal:
+          assigned: "Budget left: "
+          choices: Your selection for the vote
+          choices_remaining: "Valintoja jäljellä: "
+          current_choices: You have chosen the following proposals for your vote.
+          continue: Continue voting
+          no_selection: You have no chosen proposals.
+          remove: Remove
+      user_data:
+        error:
+          only_letters: Only letters and digits are allowed.
+          unknown: There was an error. Please try again.
+          zip_code_empty: ZIP code format is not correct.
+          zip_code_included: The ZIP code you provided is not part of the areas that
+            are eligible for voting. Make sure you have entered the correct ZIP code
+            and try again.
+        new:
+          affirm_statements: By checking this box, I affirm that these stamenets are
+            true, and that I  meet the voting eligibility requirements.
+          cancel: Cancel
+          change_zip_code_after_vote: You can not change your ZIP code after started
+            voting. Delete all of your votes first.
+          description: Please provide your ZIP code to find your Participatory Budgeting
+            ballots.
+          inputs:
+            one: First digit
+            other: digit %{count}
+          must_be_accepted: must be accepted
+          submit: Find my ballots
+          title: ZIP code
+          voting_ended: You can not set your ZIP code when the voting is not open.
+          welcome: Welcome to the <br><strong>%{organization} Participatory Budgeting!</strong>
+        success: You have successfully registered your ZIP code.
+      voting:
+        general:
+          not_open_warning: Voting is not allowed.
+        index:
+          sign_in_first: You need to sign in to start voting.
+        vote_completed_modal:
+          close: Close
+          continue: Continue
+          title: You successfully completed your votes
+        voted_summary_modal:
+          continue: Continue
+          label: Close
+          list_description: These are the proposals you picked.
+          title: Your vote
+    components:
+      budgets:
+        settings:
+          global:
+            maximum_budgets_to_vote_on: Maximum number of budgets that user can vote
+              on (default is 0, which means user can vote on all available budgets)
+            show_full_description_on_listing_page: Show full proposal descriptions
+              on the listing page and disable the details popup
+            vote_cancel_url: URL to redirect user when canceling voting (default
+              to the root path)
+            vote_completed_content: Popup text after voting in all available budgets
+            vote_success_content: Popup text after each vote
+            vote_success_url: URL to redirect user after voting on all available budgets
+              (default is budgets list)
+            voting_terms: Terms and conditions to be shown when user wants to enter
+              their ZIP code
+            workflow_choices:
+              zip_code: 'Vote based on ZIP code: allows participants to vote on budgets
+                matching their entered ZIP code.'
+    shared:
+      filters:
+        search: Search
+        search_bar: Search
+        search_placeholder: Search
+  layouts:
+    decidim:
+      shared:
+        layout_center:
+          selected_projects: Show choices
+          view: View
+          log_out: Log out
+      budgets:
+        voting_notification:
+          notification: You are now in the voting booth.

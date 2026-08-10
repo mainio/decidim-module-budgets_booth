@@ -1,0 +1,213 @@
+---
+fi:
+  decidim:
+    budgets:
+      admin:
+        budgets:
+          edit:
+            images: Kuvat
+        imports:
+          help:
+            paper_orders_count: "Tiedoston pitää sisältää seuraavanlaiset sarakkeet: 'project_id' (kertoo projektin id:n), 'project_title' (kertoo projektin otsikon) ja 'number_of_votes' (kertoo paperiäänien määrän)."
+          label:
+            paper_orders_count: Tuo paperiäänien määrä
+          resources:
+            paper_orders_count:
+              one: Projekti
+              other: Projektit
+          title:
+            paper_orders_count: Tuo paperiäänien määrä
+      budget_list_item:
+        current_phase: 'Käynnissä oleva vaihe: %{phase}'
+        more_info: Lisätietoja
+        show_my_vote: Näytä oma ääneni
+        take_part: Osallistu
+      budgets:
+        actions:
+          cancel_voting: Haluatko varmasti poistua äänestyskopista?
+          cancel_zip_code: Haluatko varmasti poistua?
+        index:
+          cancel_voting: Poistu äänestyksestä
+          login_before_access: Sinun täytyy kirjautua sisään ensin.
+          not_allowed: Tiliäsi ei ole vahvistettu tämän toiminnon suorittamiseen.
+          voted: Olet jo äänestänyt tässä budjetissa.
+      budgets_header:
+        based_on_zip_code: Perustuen postinumeroosi - %{zip_code}.
+        change_it_here: Muuta sitä tästä
+        not_right_one: Onko postinumero väärin? %{link}
+        title: 'Sinulle saatavilla olevat äänestykset'
+      budgets_list:
+        no_budgets_found: Äänestettäviä budjetteja ei löytynyt postinumerollasi. Voit vaihtaa postinumeroasi, jos se on väärin tai voit yrittää myöhemmin uudestaan.
+        vote: Näytä
+        voting_possible: "Voit äänestää vielä näillä alueilla:"
+        voted: "Olet jo äänestänyt näillä alueilla:"
+      orders:
+        status:
+          continue_voting: Jatka äänestämistä muilla alueilla
+          title: "Äänestys onnistui alueella %{budget}"
+          return: Palaa aluelistaukseen
+          votes_info: Äänesi on nyt kirjattu alueella %{budget_name}. Voit halutessasi jatkaa äänestystä muilla alueilla tai kirjautua ulos palvelusta.
+        modal:
+          assigned: 'Käytetty: '
+          close: Sulje ikkuna
+          description: Olet valinnut nämä äänestettävät ehdotukset osaksi budjettia.
+          ok: OK
+          title: Äänesi alueella %{budget_title}
+          total_budget: 'Kokonaisbudjetti: '
+        status_summary_modal:
+          title: Valitut ehdotukset
+          votes: Äänesi alueella
+          close: Sulje
+      project_l:
+        explore: Tutustu
+      project_vote_button:
+        add_to_vote: Lisää ääneesi
+        remove_from_vote: Poista äänestäsi
+      projects:
+        budget_confirm:
+          confirm: Vahvista ääni
+          description: Olet valinnut nämä äänestettävät ehdotukset osaksi budjettia.
+          is_this_correct: Onko tämä oikein?
+          title: Vahvista äänesi
+        budget_summary:
+          are_you_sure: Haluatko varmasti poistaa äänesi?
+          back_to_budgets: Näytä kaikki budjetit
+          cancel_order: Poista äänesi
+          cancel_voting: Poistu äänestyksestä
+          choose_budget: Voit päättää budjetista alueella %{budget_title}
+          choose_description: Valitse sellaiset äänestettävät ehdotukset, joista pidät ja anna äänesi sen jälkeen.
+          total_budget: 'Sinulla on käytettävissäsi <strong>%{budget}</strong>. Valitse ensin äänestettävät ehdotukset alla olevasta listasta. Valintojen jälkeen, paina "Olen valmis" -painiketta.'
+          total_projects: "Projektien määrä: "
+        cancel_voting_modal:
+          continue: Jatka äänestystä
+          description: Jos poistut äänestyksestä, ääntäsi ei lasketa lopulliseen tulokseen. Jos haluat äänesi vaikuttavan lopputulokseen, palaa takaisin äänestämään.
+          exit: En halua äänestää juuri nyt
+          label: Poistu äänestyksestä
+          title: Haluatko varmasti lopettaa äänestyksen?
+        count:
+          projects_count: "%{count} äänestettävää ehdotusta"
+        filters:
+          status_values:
+            selected: Valittu toteutukseen
+            not_selected: Ei valittu toteutukseen
+        index:
+          back_to_budgets: Takaisin kaikkiin budjetteihin
+        order_progress:
+          assigned: "Käytetty: "
+          choices: "Valintoja jäljellä: "
+          ready: Olen valmis
+          show_choices: Näytä valinnat
+          total_budget: 'Kokonaisbudjetti: '
+          total_projects: "Projektien määrä: "
+          view: Katso
+          vote: Äänestä
+        order_selected_projects:
+          assigned: "Budjettia jäljellä: "
+          choices: "Valintoja jäljellä: "
+          view: Katso
+          remove: Poista
+          show_choices: Näytä valinnat
+        pre_voting_budget_summary:
+          are_you_sure: Haluatko varmasti poistaa äänesi?
+          browse: Selaa äänestettäviä ehdotuksia
+          cancel_order: Poista äänesi
+          pre_vote:
+            casted_description: Olet aikaisemmin äänestänyt tästä budjetista. Jos haluat nähdä, kuinka äänestit, paina "Tarkasta äänesi" -painiketta. Voit myös %{cancel_link} ja aloittaa alusta.
+            casted_title: Kiitos äänestäsi
+            finish_description: Olet jo aloittanut tämän budjetin äänestyksen. Haluaisitko viimeistellä äänesi?
+            finish_voting: Viimeistele äänestys
+            result_voted: Tarkasta äänesi
+            pre_vote_start_description: Voit selata äänestettäviä ehdotuksia tutustuaksesi niihin.
+            start_description: Voit selata äänestettäviä ehdotuksia tutustuaksesi niihin. Aloittaaksesi äänestyksen, paina "Aloita alueen äänestys" -painiketta.
+            start_voting: Aloita alueen äänestys
+            title: Tervetuloa äänestämään!
+          ready: Olen valmis
+          total_budget: "Alueen kokonaisbudjetti: %{amount}"
+          voting_finished: Äänestys on päättynyt!
+        project:
+          selected: Valittu toteutukseen
+          you_voted: Äänestit tätä
+        project_budget_button:
+          add: Valitse
+          added: Poista valinta
+        project_modal:
+          budget_amount: 'Budjetti: '
+          cancel: Peruuta
+          category: 'Aihepiiri: '
+          close_project: Sulje
+        show:
+          pre_vote:
+            continue_voting: Jatka äänestystä
+            introduction: Haluatko äänestää tätä ehdotusta?
+            start_voting: Aloita alueen äänestys
+          view_all_projects: Näytä muut äänestettävät ehdotukset
+        selected_projects_modal:
+          assigned: "Budjettia jäljellä: "
+          choices: Valintasi ääneesi
+          choices_remaining: "Valintoja jäljellä: "
+          current_choices: Olet valinnut seuraavat äänestettävät ehdotukset ääneesi.
+          continue: Jatka äänestystä
+          no_selection: Et ole vielä valinnut yhtään äänestettävää ehdotusta.
+          remove: Poista valinta
+      user_data:
+        error:
+          only_letters: Vain kirjaimet ja numerot ovat sallittuja.
+          unknown: Jotain meni pieleen. Yritä uudestaan.
+          zip_code_empty: Postinumeron muoto ei ole oikein.
+          zip_code_included: Postinumerollasi ei löytynyt yhtään aluetta, jossa voisit äänestää. Tarkasta, että olet syöttänyt postinumerosi oikein ja yritä uudestaan.
+        new:
+          affirm_statements: Vahvistan, että esitetyt ehdot ovat oikein ja täytän äänestämisen vaatimukset.
+          cancel: Peruuta
+          change_zip_code_after_vote: Et voi muuttaa postinumeroasi sen jälkeen, kun olet aloittanut äänestyksen. Poista kaikki äänesi ennen postinumeron muuttamista.
+          description: Syötä postinumerosi löytääksesi sinulle saatavilla olevat äänestykset.
+          inputs:
+            one: Ensimmäinen merkki
+            other: merkki %{count}
+          must_be_accepted: täytyy olla hyväksytty
+          submit: Etsi äänestykset
+          title: Postinumero
+          voting_ended: Et voi asettaa postinumeroa, kun äänestys ei ole käynnissä.
+          welcome: Tervetuloa <br><strong>osallistuvaan budjetointiin %{organization} -alustalla</strong>
+        success: Olet syöttänyt postinumerosi.
+      voting:
+        general:
+          not_open_warning: Äänestäminen ei ole sallittua.
+        index:
+          sign_in_first: Sinun täytyy kirjautua sisään äänestääksesi.
+        vote_completed_modal:
+          close: Sulje
+          continue: Jatka
+          title: Olet suorittanut äänestyksen
+        voted_summary_modal:
+          continue: Jatka
+          label: Sulje
+          list_description: Valitsit nämä äänestettävät ehdotukset.
+          title: Äänesi
+    components:
+      budgets:
+        settings:
+          global:
+            maximum_budgets_to_vote_on: Budjettien maksimimäärä, joissa käyttäjät voivat äänestää (oletusarvo on 0, mikä tarkoittaa, että käyttäjä voi äänestää kaikissa budjeteissa)
+            show_full_description_on_listing_page: Näytä äänestettävien ehdotusten kuvaukset kokonaan listaussivulla ja poista lisätietoikkuna käytöstä
+            vote_cancel_url: URL-osoite, johon käyttäjät ohjataan poistuessa äänestyskopista kesken äänestyksen (oletuksena palvelun etusivu)
+            vote_completed_content: Ponnahdusikkunan teksti käyttäjän äänestettyä kaikissa budjeteissa
+            vote_success_content: Ponnahdusikkunan teksti jokaisen äänen jälkeen
+            vote_success_url: URL-osoite, johon käyttäjä ohjataan äänestettyään kaikissa budjeteissa (oletuksena budjettien listaussivu)
+            voting_terms: Postinumeron syöttämissivulla näytettävät ehdot
+            workflow_choices:
+              zip_code: 'Äänestä postinumeron perusteella: mahdollistaa äänestyksen budjeteissa, jotka täsmäävät käyttäjän postinumeron kanssa.'
+    shared:
+      filters:
+        search: Hakusana
+        search_bar: Hae
+        search_placeholder: Kirjoita hakusana
+  layouts:
+    decidim:
+      shared:
+        layout_center:
+          selected_projects: Näytä valinnat
+          view: Katso
+          log_out: Kirjaudu ulos
+      budgets:
+        voting_notification:
+          notification: Olet nyt äänestyskopissa.

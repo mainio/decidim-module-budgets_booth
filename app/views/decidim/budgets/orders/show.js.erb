@@ -1,0 +1,5 @@
+var $modal = $("#budget-votes-<%= budget.id %>");
+
+if ($modal.length > 0) {
+  window.Decidim.currentDialogs["budget-votes-<%= budget.id %>"].open();
+}
