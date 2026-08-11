@@ -35,7 +35,7 @@ module Decidim
           let!(:vote) { "foo" }
 
           it "redirects the user with proper message" do
-            get :index, params: { budget_id: budgets.last.id }
+            get :index, params: { initiative_slug: component.participatory_space.slug, component_id: component.id, budget_id: budgets.last.id }
             expect(response).to redirect_to(decidim_budgets.budget_projects_path(budgets.last))
             expect(flash[:warning]).to have_content("Voting is not allowed.")
           end
@@ -43,7 +43,7 @@ module Decidim
 
         context "when not signed in" do
           it "redirects to the sign in page" do
-            get :index, params: { budget_id: budgets.last.id }
+            get :index, params: { initiative_slug: component.participatory_space.slug, component_id: component.id, budget_id: budgets.last.id }
             expect(response).to redirect_to("/users/sign_in")
           end
         end
@@ -57,8 +57,8 @@ module Decidim
           end
 
           it "redirects the user" do
-            get :index, params: { budget_id: budgets.last.id }
-            expect(response).to redirect_to(budget_projects_path(budgets.last))
+            get :index, params: { initiative_slug: component.participatory_space.slug, component_id: component.id, budget_id: budgets.last.id }
+            expect(response).to redirect_to(decidim_budgets.budget_projects_path(budgets.last))
             expect(flash[:warning]).to have_content("You have already voted for this budget.")
           end
         end
@@ -70,7 +70,7 @@ module Decidim
           end
 
           it "renders the voting booth" do
-            get :index, params: { budget_id: budgets.last.id }
+            get :index, params: { initiative_slug: component.participatory_space.slug, component_id: component.id, budget_id: budgets.last.id }
             expect(response).to render_template(:index, layout: "decidim/budgets/voting_layout")
           end
         end

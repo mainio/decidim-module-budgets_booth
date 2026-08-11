@@ -20,7 +20,7 @@ describe "BudgetsView" do
       it "shows the normal layout" do
         expect(page).to have_link(translated(budgets.first.title), href: decidim_budgets.budget_path(budgets.first))
         expect(page).to have_css("a", text: /show/i, count: 3)
-        expect(page).to have_content("€100,000")
+        expect(page).to have_content("€ 100,000")
       end
     end
 

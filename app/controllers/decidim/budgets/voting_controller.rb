@@ -50,7 +50,7 @@ module Decidim
 
         session[:show_status] = true
         flash[:warning] = I18n.t("voted", scope: "decidim.budgets.budgets.index")
-        redirect_to budget_projects_path(budget)
+        redirect_to decidim_budgets.budget_projects_path(budget)
       end
 
       def decidim_budgets

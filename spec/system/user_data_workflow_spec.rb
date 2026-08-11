@@ -95,9 +95,9 @@ describe "UserDataWorkflow" do
           within ".zip-code-errors" do
             expect(page).to have_content("ZIP code format is not correct.")
           end
-          within "#affirm-checkbox" do
-            expect(page).to have_content("must be accepted")
-          end
+
+          expect(page).to have_css("#affirm-checkbox", text: "must be accepted", visible: :all)
+
           check "By checking this box, I affirm that these stamenets are true, and that I meet the voting eligibility requirements."
           click_on "Find my ballots"
 

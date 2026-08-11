@@ -15,11 +15,11 @@
       </div>
     </div>
 
-    <div class="<%= voting_mode? && resource_added? ? "selected-project" : "explore-link" %> p-4">
+    <div class="<%= voting_mode? && resource_added?(project) ? "selected-project" : "explore-link" %> p-4">
       <div class="budget__card__vote">
         <div class="budget__card__highlight-vote__header">
           <span class="budget__card__highlight-vote__text">
-            <%= t("name", scope: "decidim.budgets.admin.models.budget") %>
+            <%= t("name", scope: "decidim.budgets.models.budget.fields") %>
           </span>
           <span class="budget__card__highlight-vote__number">
             <%= budget_to_currency(project.budget_amount) %>
@@ -58,11 +58,11 @@
         </div>
       </div>
 
-      <div class="<%= voting_mode? && resource_added? ? "selected-project" : "explore-link" %> p-4">
+      <div class="<%= voting_mode? && resource_added?(project) ? "selected-project" : "explore-link" %> p-4">
         <div class="budget__card__prevote">
           <div class="budget__card__highlight-prevote__header">
             <span class="budget__card__highlight-prevote__text">
-              <%= t("name", scope: "decidim.budgets.admin.models.budget") %>
+              <%= t("name", scope: "decidim.budgets.models.budget.fields") %>
             </span>
             <span class="budget__card__highlight-prevote__number">
               <%= budget_to_currency(project.budget_amount) %>

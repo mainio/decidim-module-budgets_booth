@@ -34,7 +34,7 @@ describe Decidim::BudgetsBooth::OrdersControllerExtensions do
   describe "#checkout" do
     context "when command call returns ok" do
       it "sets thanks session and redirects the user" do
-        post :checkout, params: { budget_id: budgets.first.id, component_id: component.id, participatory_process_slug: component.participatory_space.slug }
+        post :checkout, params: { budget_id: budgets.first.id, component_id: component.id, initiative_slug: component.participatory_space.slug }
         expect(response).to redirect_to(status_budget_order_path(budgets.first))
       end
     end
@@ -46,7 +46,7 @@ describe Decidim::BudgetsBooth::OrdersControllerExtensions do
       end
 
       it "redirects the user with flash message" do
-        post :checkout, params: { budget_id: budgets.first.id, component_id: component.id, participatory_process_slug: component.participatory_space.slug }
+        post :checkout, params: { budget_id: budgets.first.id, component_id: component.id, initiative_slug: component.participatory_space.slug }
         expect(response).to redirect_to(decidim_budgets.budgets_path)
         expect(flash[:alert]).to have_content("There was a problem processing your vote")
       end
@@ -57,7 +57,7 @@ describe Decidim::BudgetsBooth::OrdersControllerExtensions do
     context "when order does not exist" do
       it "renders error" do
         expect do
-          get :show, params: { budget_id: budgets.first.id, component_id: component.id, participatory_process_slug: component.participatory_space.slug }
+          get :show, params: { budget_id: budgets.first.id, component_id: component.id, initiative_slug: component.participatory_space.slug }
         end.to raise_error(ActionController::RoutingError)
       end
     end
@@ -68,7 +68,7 @@ describe Decidim::BudgetsBooth::OrdersControllerExtensions do
       end
 
       it "redirects the html requests" do
-        get :show, params: { budget_id: budgets.first.id, component_id: component.id, participatory_process_slug: component.participatory_space.slug }
+        get :show, params: { budget_id: budgets.first.id, component_id: component.id, initiative_slug: component.participatory_space.slug }
         expect(response).to redirect_to(decidim_budgets.budgets_path)
       end
     end

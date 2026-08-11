@@ -33,6 +33,7 @@ module Decidim
           end
         end
         let(:decidim_budgets) { Decidim::EngineRouter.main_proxy(component) }
+        let(:params) { { initiative_slug: component.participatory_space.slug, component_id: component.id } }
 
         before do
           request.env["decidim.current_organization"] = organization
@@ -44,7 +45,7 @@ module Decidim
           context "when voting enabled" do
             context "when not logged in" do
               it "redirects to the login page" do
-                get :index
+                get(:index, params:)
                 expect(response).to redirect_to("/users/sign_in")
               end
             end
@@ -55,7 +56,7 @@ module Decidim
               end
 
               it "redirects to the zip code" do
-                get :index
+                get(:index, params:)
                 expect(response).to redirect_to(decidim_budgets.new_zip_code_path)
               end
             end
@@ -68,7 +69,7 @@ module Decidim
               end
 
               it "renders index with booth layout" do
-                get :index
+                get(:index, params:)
                 expect(response).to render_template(:index, layout: "decidim/budgets/voting_layout")
               end
             end
@@ -80,7 +81,7 @@ module Decidim
             end
 
             it "does not render the layout" do
-              get :index
+              get(:index, params:)
               expect(response).to render_template(:index, layout: "layouts/decidim/participatory_process")
             end
           end
@@ -92,7 +93,7 @@ module Decidim
           end
 
           it "renders the index" do
-            get :index
+            get(:index, params:)
             expect(response).to render_template(:index, layout: "layouts/decidim/participatory_process")
           end
         end
