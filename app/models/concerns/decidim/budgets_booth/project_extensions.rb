@@ -40,15 +40,15 @@ module Decidim
 
         ransacker :confirmed_orders_count do
           Arel.sql(
-            <<-SQL.squish
-            (
-              SELECT COUNT(decidim_budgets_line_items.decidim_order_id)
-              FROM decidim_budgets_line_items
-              LEFT JOIN decidim_budgets_orders
-                ON decidim_budgets_orders.id = decidim_budgets_line_items.decidim_order_id
-              WHERE decidim_budgets_orders.checked_out_at IS NOT NULL
-              AND decidim_budgets_projects.id = decidim_budgets_line_items.decidim_project_id
-            ) + COALESCE(decidim_budgets_projects.paper_orders_count, 0)
+            <<~SQL.squish
+              (
+                SELECT COUNT(decidim_budgets_line_items.decidim_order_id)
+                FROM decidim_budgets_line_items
+                LEFT JOIN decidim_budgets_orders
+                  ON decidim_budgets_orders.id = decidim_budgets_line_items.decidim_order_id
+                WHERE decidim_budgets_orders.checked_out_at IS NOT NULL
+                AND decidim_budgets_projects.id = decidim_budgets_line_items.decidim_project_id
+              ) + COALESCE(decidim_budgets_projects.paper_orders_count, 0)
             SQL
           )
         end
