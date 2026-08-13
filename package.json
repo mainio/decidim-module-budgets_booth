@@ -3,9 +3,6 @@
     "lint": "eslint -c .eslintrc.json --no-error-on-unmatched-pattern --ext .js,.jsx decidim-*/app/packs",
     "stylelint": "stylelint app/packs/**/*.scss"
   },
-    "overrides": {
-    "stylelint-prettier": "^4.1.0"
-  },
   "dependencies": {
     "@decidim/webpacker": "^0.27.2"
   },
@@ -24,7 +21,6 @@
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.20.6",
     "eslint-plugin-standard": "^3.1.0",
-    "stylelint": "^15.3.0",
-    "stylelint-prettier": "^4.1.0"
+    "eslint-plugin-prettier": "^5.0.0"
   }
 }
