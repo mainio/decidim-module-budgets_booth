@@ -78,7 +78,7 @@ describe "UserDataWorkflow" do
 
     context "when zip_code_length is set" do
       before do
-        allow(Decidim::BudgetsBooth.config).to receive(:zip_code_length).and_return(6)
+        allow(Decidim::BudgetsBooth).to receive(:zip_code_length).and_return(6)
         visit decidim_budgets.new_zip_code_path
       end
 
