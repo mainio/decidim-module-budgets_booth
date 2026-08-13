@@ -4,7 +4,7 @@ class CreateDecidimBudgetsUserData < ActiveRecord::Migration[6.1]
   def change
     create_table :decidim_budgets_user_data do |t|
       t.jsonb :metadata
-      t.boolean :affirm_statements_are_correct, default: false
+      t.boolean :affirm_statements_are_correct, null: false, default: false
       t.references :decidim_component, null: false, indec: true
       t.references :decidim_user, null: false, index: true
 
