@@ -9,10 +9,8 @@ module Decidim
   module BudgetsBooth
     autoload :VotingSupport, "decidim/budgets_booth/voting_support"
     autoload :TaxonomyManager, "decidim/budgets_booth/taxonomy_manager"
-    include ActiveSupport::Configurable
+
     # Default configuration digits to generate the zip code.
-    config_accessor :zip_code_length do
-      5
-    end
+    mattr_accessor :zip_code_length, default: 5
   end
 end

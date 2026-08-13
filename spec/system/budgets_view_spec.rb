@@ -87,7 +87,7 @@ describe "BudgetsView" do
                 click_on "I don't want to vote right now"
               end
 
-              expect(page).to have_link(href: "/")
+              expect(page).to have_current_path("/en", ignore_query: true)
             end
 
             context "with landing page content" do

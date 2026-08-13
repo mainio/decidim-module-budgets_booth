@@ -62,7 +62,7 @@ describe "NonZipCodeWorkflow" do
         end
 
         it "sends the user to the sign in page" do
-          expect(page).to have_current_path "/users/sign_in"
+          expect(page).to have_current_path "/en/users/sign_in"
         end
       end
 

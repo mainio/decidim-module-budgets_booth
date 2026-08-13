@@ -4,6 +4,7 @@ require "spec_helper"
 
 describe Decidim::Budgets::Admin::UpdateBudget do
   include Decidim::BudgetsBooth::UpdateBudgetExtensions
+
   subject { described_class.new(form, budget) }
 
   let(:budget) { create(:budget) }

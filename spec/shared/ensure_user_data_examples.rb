@@ -2,7 +2,7 @@
 
 shared_examples "ensure user data" do
   it "redirects the user" do
-    expect(page).to have_current_path("/")
+    expect(page).to have_current_path("/en")
     within_flash_messages do
       expect(page).to have_content "You are not authorized to perform this action"
     end

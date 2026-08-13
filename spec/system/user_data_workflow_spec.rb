@@ -41,7 +41,7 @@ describe "UserDataWorkflow" do
       within_flash_messages do
         expect(page).to have_content("You can not change your ZIP code after started voting. Delete all of your votes first.")
       end
-      expect(page).to have_current_path("/")
+      expect(page).to have_current_path("/en")
     end
   end
 
@@ -58,7 +58,7 @@ describe "UserDataWorkflow" do
       within_flash_messages do
         expect(page).to have_content("You can not set your ZIP code when the voting is not open.")
       end
-      expect(page).to have_current_path("/")
+      expect(page).to have_current_path("/en")
     end
   end
 
@@ -120,7 +120,7 @@ describe "UserDataWorkflow" do
           click_on "Cancel"
           expect(page).to have_content("Are you sure you want to exit?")
           click_on("OK")
-          expect(page).to have_current_path("/")
+          expect(page).to have_current_path("/en")
         end
       end
 

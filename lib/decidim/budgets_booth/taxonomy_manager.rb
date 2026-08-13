@@ -10,11 +10,11 @@ module Decidim
         # not have to be re-fetched for the multiple instances of the
         # TaxonomyManager class.
         def taxonomies_mapping_for(taxonomies)
-          Array(taxonomies).each_with_object({}) do |taxonomy, hash|
-            hash[taxonomy.id] = taxonomies_mapping_cache[taxonomy.id] ||= Rails.cache.fetch(
+          Array(taxonomies).to_h do |taxonomy|
+            [taxonomy.id, taxonomies_mapping_cache[taxonomy.id] ||= Rails.cache.fetch(
               cache_key(taxonomy.cache_key_with_version),
               expires_in: 1.hour
-            ) { generate_taxonomies_mapping_for(taxonomy) }
+            ) { generate_taxonomies_mapping_for(taxonomy) }]
           end
         end
 

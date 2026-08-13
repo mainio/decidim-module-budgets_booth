@@ -44,7 +44,7 @@ module Decidim
         context "when not signed in" do
           it "redirects to the sign in page" do
             get :index, params: { initiative_slug: component.participatory_space.slug, component_id: component.id, budget_id: budgets.last.id }
-            expect(response).to redirect_to("/users/sign_in")
+            expect(response).to redirect_to("/en/users/sign_in")
           end
         end
 

@@ -46,7 +46,7 @@ module Decidim
             context "when not logged in" do
               it "redirects to the login page" do
                 get(:index, params:)
-                expect(response).to redirect_to("/users/sign_in")
+                expect(response).to redirect_to("/en/users/sign_in")
               end
             end
 

@@ -19,7 +19,7 @@ shared_examples "cancel voting" do
     within "#cancel-voting" do
       click_on "I don't want to vote right now"
     end
-    expect(page).to have_current_path("/")
+    expect(page).to have_current_path("/en")
   end
 
   context "when vote_cancel_url is set to a specific location" do

@@ -24,7 +24,7 @@ module Decidim
       context "when not zip_code workflow" do
         it "redirects the user with error message" do
           get(:new, params:)
-          expect(response).to redirect_to("/")
+          expect(response).to redirect_to("/en")
           expect(flash[:warning]).to have_content("You are not allowed to perform this action.")
         end
       end
@@ -39,7 +39,7 @@ module Decidim
         context "when not authenticated" do
           it "redirects to the login page" do
             get(:new, params:)
-            expect(response).to redirect_to("/users/sign_in")
+            expect(response).to redirect_to("/en/users/sign_in")
           end
         end
 
@@ -54,7 +54,7 @@ module Decidim
 
           it "redirects to the root path" do
             get(:new, params:)
-            expect(response).to redirect_to("/")
+            expect(response).to redirect_to("/en")
             expect(flash[:warning]).to have_content("You can not change your ZIP code after started voting. Delete all of your votes first.")
           end
         end
@@ -68,7 +68,7 @@ module Decidim
 
           it "redirects to the root path with warning" do
             get(:new, params:)
-            expect(response).to redirect_to("/")
+            expect(response).to redirect_to("/en")
             expect(flash[:warning]).to have_content("You can not set your ZIP code when the voting is not open.")
           end
         end

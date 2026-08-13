@@ -4,6 +4,7 @@ require "spec_helper"
 
 describe Decidim::Budgets::Admin::CreateBudget do
   include Decidim::BudgetsBooth::CreateBudgetExtensions
+
   subject { described_class.new(form) }
 
   let(:organization) { create(:organization, available_locales: [:en, :ca, :es], default_locale: :en) }

@@ -8,10 +8,10 @@ describe Decidim::Taxonomy do
   let(:component_settings) { { taxonomy_filters: [taxonomy_filter.id] } }
 
   let(:root_taxonomy) { create(:taxonomy, organization:) }
-  let!(:taxonomy_filter) { create(:taxonomy_filter, root_taxonomy: root_taxonomy) }
+  let!(:taxonomy_filter) { create(:taxonomy_filter, root_taxonomy:) }
   let!(:postal_taxonomies) do
-    (10_000..10_005).each_with_object({}) do |code, hash|
-      hash[code.to_s] = create(:taxonomy, parent: root_taxonomy, name: { en: code.to_s }, code: "POSTAL_#{code}")
+    (10_000..10_005).to_h do |code|
+      [code.to_s, create(:taxonomy, parent: root_taxonomy, name: { en: code.to_s }, code: "POSTAL_#{code}")]
     end
   end
   let(:taxonomy_manager) { Decidim::BudgetsBooth::TaxonomyManager.new(component) }
