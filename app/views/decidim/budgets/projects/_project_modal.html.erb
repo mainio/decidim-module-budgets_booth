@@ -7,12 +7,10 @@
     <div class="row text-left space-y-2">
       <p class="h6"><strong><%= t ".budget_amount" %></strong><%= budget_to_currency(project.budget_amount) %></p>
 
-      <% if project.category %>
-        <p class="h6"><strong><%= t ".category" %></strong><%= decidim_sanitize(translated_attribute(project.category.try(:name))) %></p>
-      <% end %>
-
-      <% if project.scope %>
-        <p class="h6"><strong><%= t ".scope" %></strong><%= decidim_sanitize(translated_attribute(project.scope.try(:name))) || t("decidim.scopes.global") %></p>
+      <% if project.taxonomies.any? %>
+        <p class="h6"><strong><%= t ".taxonomies" %></strong>
+          <%= project.taxonomies.map { |taxonomy| decidim_sanitize_translated(taxonomy.name).join(", ") } %>
+        </p>
       <% end %>
 
       <div class="row text-left text-md">
