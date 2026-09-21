@@ -133,7 +133,7 @@ fi:
         project_modal:
           budget_amount: 'Budjetti: '
           cancel: Peruuta
-          category: 'Aihepiiri: '
+          taxonomies: 'Luokittelut: '
           close_project: Sulje
         show:
           pre_vote:
