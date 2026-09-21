@@ -142,7 +142,7 @@ en:
         project_modal:
           budget_amount: 'Budget: '
           cancel: Cancel
-          category: 'Category: '
+          taxonomies: 'Taxonomies: '
           close_project: Close
         show:
           pre_vote:

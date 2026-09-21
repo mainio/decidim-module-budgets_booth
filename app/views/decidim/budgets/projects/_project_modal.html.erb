@@ -9,7 +9,7 @@
 
       <% if project.taxonomies.any? %>
         <p class="h6"><strong><%= t ".taxonomies" %></strong>
-          <%= project.taxonomies.map { |taxonomy| decidim_sanitize_translated(taxonomy.name).join(", ") } %>
+          <%= project.taxonomies.map { |taxonomy| decidim_sanitize_translated(taxonomy.name) }.join(", ") %>
         </p>
       <% end %>
 
