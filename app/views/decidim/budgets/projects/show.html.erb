@@ -61,7 +61,7 @@ edit_link(
 
     <div class="layout-aside__section layout-aside__buttons action-divider">
       <div class="record-action-container">
-        <%= cell "decidim/share_button", nil, default_classes: false %>
+        <%= cell "decidim/share_widget", project %>
         <%= cell "decidim/comments_button", nil %>
       </div>
     </div>
@@ -76,7 +76,6 @@ edit_link(
         <div class="section space-y-8">
           <%= cell("decidim/budgets/project_selected_status", project, as_label: true) %>
           <%= decidim_sanitize_editor translated_attribute project.description %>
-          <%= cell "decidim/budgets/project_tags", project, context: { extra_classes: ["tags--project"] } %>
         </div>
         <%= attachments_for project %>
       </div>
@@ -89,7 +88,5 @@ edit_link(
       </ul>
     <% end %>
   <% end %>
-
-  <%= render partial: "decidim/shared/share_modal" %>
 </main>
 
