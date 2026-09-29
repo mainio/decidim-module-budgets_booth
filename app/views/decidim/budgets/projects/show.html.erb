@@ -23,7 +23,7 @@ edit_link(
 
 <main class="voting-wrapper">
   <div class="projects-link">
-    <%= link_to budget_projects_path(budget), class: "link js-back-to-list flex" do %>
+    <%= link_to budget_projects_path(budget), class: "link flex" do %>
       <%= icon "arrow-left-s-line", class: "icon--small h-6 w-6 pt-1 fill-[--primary]", role: "img", "aria-hidden": true %>
       <%= t("view_all_projects", scope: "decidim.budgets.projects.show") %>
     <% end %>
