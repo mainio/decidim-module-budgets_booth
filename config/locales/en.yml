@@ -1,9 +1,5 @@
 ---
 en:
-  activemodel:
-    attributes:
-      budget:
-        main_image: Main image
   decidim:
     budgets:
       admin:

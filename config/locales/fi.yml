@@ -1,9 +1,5 @@
 ---
 fi:
-  activemodel:
-    attributes:
-      budget:
-        main_image: Pääkuva
   decidim:
     budgets:
       admin:
