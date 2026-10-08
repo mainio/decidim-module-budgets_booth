@@ -11,6 +11,9 @@ they exit the voting booth, they have not yet cast their vote.
 
 **THIS MODULE VERSION (0.32) IS DESIGNED TO BE USED IN WITH THE SIMPLEUI -MODULE**
 
+*Using this module without the Simple UI -module causes the budget component's*
+*views to look scrambled since all the styling is packed inside Simple UI*
+
 *ATTENTION!* -------------------------------------------------------------------
 
 ********************************************************************************
