@@ -7,11 +7,24 @@ their vote has not been cast. The idea is to "lock" the user inside a voting
 booth during the voting process and make it extremely clear for them that if
 they exit the voting booth, they have not yet cast their vote.
 
+*ATTENTION!* -------------------------------------------------------------------
+
+**THIS MODULE VERSION (0.32) IS DESIGNED TO BE USED IN WITH THE SIMPLEUI -MODULE**
+
+*ATTENTION!* -------------------------------------------------------------------
+
+********************************************************************************
+
+**This feature is deprecated in the mainio fork of this module since it wasn't used**
+**So the CSS and some functionality might be broken**
+
 The module also introduces a new budgeting workflow called "ZIP code". This
 workflow allows limiting the budgets available for the user based on their ZIP
 code, providing them only those budgets they are eligible to vote at. For more
 information and how to set this up, please refer to the
 [ZIP code voting documentation](docs/ZIP_CODE_VOTING.md).
+
+********************************************************************************
 
 ## Usage
 
@@ -19,6 +32,11 @@ This module is built on top of the `decidim-budgets` module and adds extra
 feature/capabilities to it. After installing this module, the normal budgeting
 component will automatically provide the voting booth capabilities meaning if
 you do not want these capabilities, you should uninstall this module.
+
+********************************************************************************
+
+**This feature is deprecated in the mainio fork of this module since it wasn't used**
+**So the CSS and some functionality might be broken**
 
 For enabling the "ZIP code voting" feature, you have a new workflow available
 for the budgets component named "ZIP code" which shows up at the configuration
@@ -45,12 +63,14 @@ This workflow enables the following features to the budget voting experience:
 - Capability of adding images to the budgets from back office, to be displayed
   at the budgets listing page.
 
+********************************************************************************
+
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "decidim-budgets_booth", github: "Pipeline-to-Power/decidim-module-ptp", branch: "main"
+gem "decidim-budgets_booth", github: "mainio/decidim-module-budgets_booth", branch: "main"
 ```
 
 And then execute:
@@ -59,9 +79,21 @@ And then execute:
 bundle
 ```
 
+Install migrations
+
+```bash
+bundle exec rails decidim_budgets_booth:install:migrations
+bundle exec rails db:migrate
+```
+
 ## Configuration
 
 ### Admin configuration
+
+********************************************************************************
+
+**This feature is deprecated in the mainio fork of this module since it wasn't used**
+**So the CSS and some functionality might be broken**
 
 To configure this module correctly, you need to first configure the ZIP codes
 correctly. Please refer to the
@@ -110,6 +142,8 @@ Decidim::BudgetsBooth.configure do |config|
   config.zip_code_length = 5
 end
 ```
+
+********************************************************************************
 
 ## Testing
 
