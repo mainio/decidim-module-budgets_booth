@@ -15,7 +15,7 @@
       </div>
     </div>
 
-    <div class="<%= voting_mode? && resource_added?(project) ? "selected-project" : "explore-link" %> p-4">
+    <div class="<%= resource_added?(project) ? "selected-project" : "explore-link" %> p-4">
       <div class="budget__card__vote">
         <div class="budget__card__highlight-vote__header">
           <span class="budget__card__highlight-vote__text">
@@ -51,14 +51,16 @@
           <% end %>
 
           <% if show_votes? %>
-            <%= cell("decidim/budgets/project_votes_count", project, layout: :one_line, class: "display-block card__list-text") %>
+            <div class="vote-count card__list-text">
+              <%= cell("decidim/budgets/project_votes_count", project, layout: :with_count_label) %>
+            </div>
           <% end %>
 
           <%= cell("decidim/budgets/project_voted_hint", project, class: "display-block card__list-text voted-tag") %>
         </div>
       </div>
 
-      <div class="<%= voting_mode? && resource_added?(project) ? "selected-project" : "explore-link" %> p-4">
+      <div class="explore-link p-4">
         <div class="budget__card__prevote">
           <div class="budget__card__highlight-prevote__header">
             <span class="budget__card__highlight-prevote__text">

@@ -35,11 +35,11 @@ module Decidim
         end
       end
 
-      initializer "decidim_budgets_booth.webpacker.assets_path" do
+      initializer "decidim_budgets_booth.shakacker.assets_path" do
         Decidim.register_assets_path File.expand_path("app/packs", root)
       end
 
-      initializer "decidim_budgets_booth.add_cells_view_paths", before: "decidim_budgets.add_cells_view_paths" do
+      initializer "decidim_budgets_booth.add_cells_view_paths", before: "decidim_simple_ui.add_cells_view_paths" do
         Cell::ViewModel.view_paths << File.expand_path("#{Decidim::BudgetsBooth::Engine.root}/app/cells")
         Cell::ViewModel.view_paths << File.expand_path("#{Decidim::BudgetsBooth::Engine.root}/app/views") # for partials
       end
