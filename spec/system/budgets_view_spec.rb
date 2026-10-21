@@ -174,7 +174,7 @@ describe "BudgetsView" do
               end
 
               it "shows the popups" do
-                within "div.card.card--list.budget-list", match: :first do
+                within "#budgets" do
                   expect(page).to have_link("Show my vote")
                   click_on "Show my vote"
                 end

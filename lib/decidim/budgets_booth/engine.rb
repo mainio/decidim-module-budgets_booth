@@ -39,7 +39,14 @@ module Decidim
         Decidim.register_assets_path File.expand_path("app/packs", root)
       end
 
-      initializer "decidim_budgets_booth.add_cells_view_paths", before: "decidim_simple_ui.add_cells_view_paths" do
+      before_initializer =
+        if Decidim.module_installed?(:simple_ui)
+          "decidim_simple_ui.add_cells_view_paths"
+        else
+          "decidim_budgets.add_cells_view_paths"
+        end
+
+      initializer "decidim_budgets_booth.add_cells_view_paths", before: before_initializer do
         Cell::ViewModel.view_paths << File.expand_path("#{Decidim::BudgetsBooth::Engine.root}/app/cells")
         Cell::ViewModel.view_paths << File.expand_path("#{Decidim::BudgetsBooth::Engine.root}/app/views") # for partials
       end

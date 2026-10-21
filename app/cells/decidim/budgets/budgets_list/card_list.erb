@@ -1,0 +1,34 @@
+<% if voting_booth_forced? %>
+  <% if budgets.none? %>
+    <div class="section">
+      <div class="callout warning font-customizer">
+        <%= t("no_budgets_found", scope: "decidim.budgets.budgets_list") %>
+      </div>
+    </div>
+  <% end %>
+
+  <div id="budgets">
+    <% if budgets.any? %>
+      <% budgets.each do |budget| %>
+        <% next if hide_unvoted?(budget) %>
+        <div class="card card--list budget-list">
+          <%= cell("decidim/budgets/budget_list_item", budget) %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% else %>
+  <% if highlighted.any? %>
+    <% reordered_highlighted_budgets.each do |budget| %>
+      <%= cell("decidim/budgets/budget_list_item", budget) %>
+    <% end %>
+  <% end %>
+
+  <% non_highlighted = reorder(budgets).where.not(id: (highlighted + voted).map(&:id)) %>
+
+  <% if non_highlighted.exists? %>
+    <% non_highlighted.each do |budget| %>
+      <%= cell("decidim/budgets/budget_list_item", budget) %>
+    <% end %>
+  <% end %>
+<% end %>

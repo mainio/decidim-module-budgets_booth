@@ -75,7 +75,7 @@ describe "VotingIndexPage" do
       expect(page).to have_content("You are now in the voting booth.")
       expect(page).to have_content("You decide the #{first_budget.title["en"]} budget")
       expect(page).to have_button("Cancel voting")
-      expect(page).to have_content("You can allocate € 100,000.")
+      expect(page).to have_content("You can allocate € 100,000, minimum of € 70,000.")
       expect(page).to have_css(".button.project-vote-button", count: 5)
     end
 
@@ -310,7 +310,7 @@ describe "VotingIndexPage" do
         expect(page).to have_css("#budget-excess")
 
         within ".budget-summary__total" do
-          expect(page).to have_content("You can allocate € 24,999.")
+          expect(page).to have_content("You can allocate € 24,999, minimum of € 17,499.")
         end
 
         expect(page).to have_content("Maximum budget exceeded")
