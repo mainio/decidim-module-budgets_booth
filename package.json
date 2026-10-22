@@ -6,9 +6,6 @@
     "overrides": {
     "stylelint-prettier": "^4.1.0"
   },
-  "dependencies": {
-    "@decidim/webpacker": "^0.27.2"
-  },
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.5",
     "@babel/preset-env": "^7.21.5",
