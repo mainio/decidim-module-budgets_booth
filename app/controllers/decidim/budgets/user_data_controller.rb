@@ -17,11 +17,15 @@ module Decidim
       helper_method :user_zip_code
 
       def new
+        enforce_permission_to :create, :user_data
+
         @form = form(UserDataForm).instance
         @form.zip_code = user_zip_code
       end
 
       def create
+        enforce_permission_to :create, :user_data
+
         @invalid = false
         @form = form(UserDataForm).from_params(params.merge(user: current_user, component: current_component))
         CreateUserData.call(@form, all_zip_codes) do
@@ -61,6 +65,10 @@ module Decidim
 
       def invalidate_form
         @invalid = true
+      end
+
+      def permission_class_chain
+        [Decidim::BudgetsBooth::Permissions] + super
       end
     end
   end

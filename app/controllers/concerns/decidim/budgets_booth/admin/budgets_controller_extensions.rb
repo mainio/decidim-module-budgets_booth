@@ -10,7 +10,7 @@ module Decidim
           private
 
           def projects
-            @projects ||= Decidim::Budgets::Project.where(budget: budgets)
+            @projects ||= Decidim::Budgets::Project.where(component: current_component, budget: budgets)
           end
 
           def finished_orders

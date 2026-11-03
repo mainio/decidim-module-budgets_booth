@@ -13,6 +13,7 @@ module Decidim
         before_action :ensure_user_zip_code, if: :open_and_voting_booth_forced?
         before_action :ensure_multiple_budgets, unless: :open_and_voting_booth_forced?
         def index
+          enforce_permission_to :read, :budget
           # we need to redefine this action to avoid redirect in case of single budget
         end
 

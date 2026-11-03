@@ -33,13 +33,17 @@ module Decidim
         def show
           raise ActionController::RoutingError, "Not Found" unless order
 
+          enforce_permission_to(:read, :order, order:)
+
           respond_to do |format|
             format.html { redirect_to decidim_budgets.budgets_path }
             format.js { render }
           end
         end
 
-        def status; end
+        def status
+          enforce_permission_to :read, :order, order:
+        end
 
         private
 

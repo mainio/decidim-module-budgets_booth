@@ -8,6 +8,7 @@ module Decidim
 
       included do
         def index
+          enforce_permission_to :read, :project
           raise ActionController::RoutingError, "Not Found" unless budget
 
           raise ActionController::RoutingError, "Not Found" unless allow_access?
@@ -17,6 +18,8 @@ module Decidim
           raise ActionController::RoutingError, "Not Found" unless budget
           raise ActionController::RoutingError, "Not Found" unless project
           raise ActionController::RoutingError, "Not Found" unless allow_access?
+
+          enforce_permission_to :read, :project, project:
         end
       end
 
